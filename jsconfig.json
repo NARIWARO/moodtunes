@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Or another JavaScript version you are using
+    "module": "commonjs",
+    "checkJs": false, // Ensures TypeScript does not perform type checking on JavaScript files
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
