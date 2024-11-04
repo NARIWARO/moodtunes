@@ -1,11 +1,16 @@
 import { React, useState, useEffect } from "react";
-import { Play, Pause, Search } from "lucide-react"
+import { Play, Pause, Search } from "lucide-react";
 import axios from "axios";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { fetchSongsByGenre, searchSongs, playSong, pauseSong } from "@/spotify/spotifyData";
+import {
+  fetchSongsByGenre,
+  searchSongs,
+  playSong,
+  pauseSong,
+} from "@/spotify/spotifyData";
 
 import {
   Table,
@@ -16,7 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 
 const Songs = (props) => {
   const [songs, setSongs] = useState([]);
@@ -25,19 +30,18 @@ const Songs = (props) => {
   useEffect(() => {
     const defaultSongs = async () => {
       const token = localStorage.getItem("token");
-      const defaultSongList = await searchSongs(token, "faujan")
-      setSongs(defaultSongList)
-    }
-    defaultSongs()
-  }, [])
+      const defaultSongList = await searchSongs(token, "faujan");
+      setSongs(defaultSongList);
+    };
+    defaultSongs();
+  }, []);
 
   const handleGenreFetch = async (genre) => {
     const token = localStorage.getItem("token");
     const fetchedSongs = await fetchSongsByGenre(token, searchQuery);
     setSongs(fetchedSongs);
-    console.log(fetchedSongs)
+    console.log(fetchedSongs);
   };
-
 
   const handleSearch = async () => {
     const token = localStorage.getItem("token");
@@ -62,7 +66,6 @@ const Songs = (props) => {
 
   return (
     <>
-
       <section className="h-full overflow-hidden">
         <div className="w-full  p-2 flex flex-row items-center justify-between">
           <div className="flex flex-row items-center">
@@ -73,7 +76,12 @@ const Songs = (props) => {
               placeholder="Search for songs..."
               className="bg-gray-200 rounded-lg mr-3 p-1"
             />
-            <button onClick={handleSearch} className="max-w-max bg-white text-black px-2 py-1 rounded"><Search /></button>
+            <button
+              onClick={handleSearch}
+              className="max-w-max bg-white text-black px-2 py-1 rounded"
+            >
+              <Search />
+            </button>
           </div>
           <div className="flex flex-row justify-center items-center gap-4">
             <p className="text-white">{display_name}</p>
@@ -87,12 +95,23 @@ const Songs = (props) => {
           <div className="p-4">
             {/* <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4> */}
             {songs.map((song) => (
-              <div key={song.id} className="p-2 border-b hover:bg-slate-600 shadow-md bg-transparent flex flex-row mb-1  justify-between">
+              <div
+                key={song.id}
+                className="p-2 border-b hover:bg-slate-600 shadow-md bg-transparent flex flex-row mb-1  justify-between"
+              >
                 <div className="">
                   <h3 className="text-md text-white font-bold">{song.name}</h3>
                   <div className="w-full flex flex-row gap-6 ">
-                    <p className="text-gray-200 text-sm w-90">Artist: {song.artists.map(artist => artist.name).join(', ')}</p>
-                    <p className="text-gray-300 text-sm">Duration: {Math.floor(song.duration_ms / 60000)}:{((song.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}</p>
+                    <p className="text-gray-200 text-sm w-90">
+                      Artist:{" "}
+                      {song.artists.map((artist) => artist.name).join(", ")}
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      Duration: {Math.floor(song.duration_ms / 60000)}:
+                      {((song.duration_ms % 60000) / 1000)
+                        .toFixed(0)
+                        .padStart(2, "0")}
+                    </p>
                   </div>
                 </div>
                 <div className="mt-2">
@@ -104,7 +123,8 @@ const Songs = (props) => {
                   </button>
                   <button
                     onClick={handlePause}
-                    className="px-2 py-1 rounded mr-2 border text-white">
+                    className="px-2 py-1 rounded mr-2 border text-white"
+                  >
                     <Pause />
                   </button>
                 </div>
@@ -113,9 +133,8 @@ const Songs = (props) => {
           </div>
         </ScrollArea>
       </section>
-
     </>
   );
 };
 
-export default Songs
+export default Songs;
