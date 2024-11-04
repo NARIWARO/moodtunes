@@ -2,13 +2,17 @@ import { useState, useEffect } from "react";
 import Login from "./Login";
 
 
+
 const Home = () => {
-    const [hash, setHash] = useState("")
+    const [token, setToken] = useState("")
 
     useEffect(() => {
-        const hash = window.location.hash
-        console.log(hash)
+        // const token = window.localStorage.getItem
+        // const hash = window.location.hash
+        // console.log(hash)
+
     }, [])
+
     return (
         <>
             <Login />

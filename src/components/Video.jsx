@@ -8,6 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Search } from "lucide-react";
+import { fetchSongsByGenre } from "@/spotify/spotifyData";
 
 const Video = () => {
   const vidRef = useRef(null);
@@ -33,6 +35,13 @@ const Video = () => {
   // Filter function to fetch songs based on the detected mood
   const filterSongsByMood = (mood) => {
     return playlists[mood] || [];
+  };
+
+  const handleGenreFetch = async (genre) => {
+    const token = localStorage.getItem("token");
+    const fetchedSongs = await fetchSongsByGenre(token, result);
+    setSongs(fetchedSongs);
+    console.log(fetchedSongs)
   };
 
   // Function to play a song
@@ -152,13 +161,13 @@ const Video = () => {
 
   return (
     <>
-      <Card className="flex flex-col gap-2 box-content relative p-2 border-none bg-transparent">
-        <div className="text-custom-white p-3 rounded-md bg-custom-gray text-lg font-bold">
-          <a href="#">
-            <b>Moodtunes</b>
-          </a>
-        </div>
+      <Card className="flex flex-col gap-2 box-content relative p-2 border-none bg-transparent h-full">
         <div className="bg-[#282a31] rounded-md">
+          <div className="text-custom-white p-3 rounded-md bg-custom-gray text-lg font-bold text-center">
+            <a href="#">
+              <b>Moodtunes</b>
+            </a>
+          </div>
           <CardHeader>
             <CardTitle className="text-xl text-custom-white">Verifying Expressions...</CardTitle>
             <CardDescription>Make sure good amount of light reflects on your face for better evaluation of face expressions</CardDescription>
@@ -172,9 +181,16 @@ const Video = () => {
               {isCameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
             </button>
           </CardFooter>
-          <div className="bg-white m-2 p-3 rounded-sm">
-            <h5 className="text-sm"><i>Your current mood is...</i></h5>
-            <h3 className="text-xl font-bold">{result}</h3>
+          <div className="bg-white m-2 p-3 rounded-sm flex flex-row justify-between">
+            <div className="">
+              <h5 className="text-sm"><i>Your current mood is...</i></h5>
+              <h3 className="text-xl font-bold">{result}</h3>
+            </div>
+            <div className="">
+              <button>
+                <Search onClick={handleGenreFetch} />
+              </button>
+            </div>
           </div>
         </div>
       </Card>
