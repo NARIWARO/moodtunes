@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const Nav = () => {
   return (
     <div>
-      <nav className="h-16 w-full bg-black flex flex-row justify-between items-center p-4">
+      <nav className="h-16 w-full bg-black flex flex-row justify-between items-center p-4 border-b border-zinc-800">
         {/* logo */}
         <div className="text-white text-2xl font-bold">
           <h3>moodtunes</h3>

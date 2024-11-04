@@ -4,6 +4,7 @@ import Songs from "./Songs";
 import { fetchSpotifyUserData } from "@/spotify/spotifyData";
 import { Search } from "lucide-react";
 import Nav from "./Nav";
+import Section from "./Section";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -26,8 +27,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="w-full h-scre">
+    <div className="flex flex-col w-full h-screen">
       <Nav />
+      <Section />
     </div>
   );
 };
