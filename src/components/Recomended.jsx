@@ -12,7 +12,7 @@ const Recomended = () => {
         <div className="flex flex-row justify-between">
           <h1 className="text-3xl font-semibold">Recomended Songs</h1>
           <h6 className="text-zinc-700">
-            Listen songs based on your mood, using{" "}
+            Listen songs based on your mood, by clicking{" "}
             <span className="font-semibold underline">moodAi</span>
           </h6>
         </div>

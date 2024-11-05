@@ -1,6 +1,12 @@
-import { Search } from "lucide-react";
+import { Power, Search } from "lucide-react";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Nav = () => {
   return (
@@ -25,14 +31,28 @@ const Nav = () => {
         </div>
 
         {/* profile */}
-        <div className="flex flex-row gap-3 items-center">
+        <div className="flex flex-row gap-3 items-center ">
           <h3 className="text-white font-semibold">shivam singh</h3>
-          <Avatar>
-            <AvatarImage src="" />
-            <AvatarFallback className="bg-green-500 font-bold">
-              CN
-            </AvatarFallback>
-          </Avatar>
+          <div className="flex flex-row gap-6">
+            <Avatar>
+              <AvatarImage src="" />
+              <AvatarFallback className="bg-green-500 font-bold">
+                CN
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-zinc-700 flex items-center">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Power />
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-zinc-700 border-none">
+                    <p className="text-zinc-400">logout</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
         </div>
       </nav>
     </div>

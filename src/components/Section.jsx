@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Recomended from "./Recomended";
+import MoodAi from "./MoodAi";
 
 const Section = () => {
   return (
@@ -16,7 +17,9 @@ const Section = () => {
         <TabsContent value="recomended">
           <Recomended />
         </TabsContent>
-        <TabsContent value="moodai">Change your password here.</TabsContent>
+        <TabsContent value="moodai">
+          <MoodAi />
+        </TabsContent>
       </Tabs>
     </>
   );
