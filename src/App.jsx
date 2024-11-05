@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 import Dashboard from "./components/Dashboard";
+
 import Login from "./components/Login";
 import { setClientToken } from "./spotify/spotifyLogin";
+
+import { fetchSpotifyUserData } from "./spotify/spotifyData";
 
 function App() {
   const [spotifyToken, setSpotifyToken] = useState("");
@@ -24,7 +27,13 @@ function App() {
     }
   }, []);
 
-  return !spotifyToken ? <Login /> : <Dashboard />;
+  return !spotifyToken ? (
+    <Login />
+  ) : (
+    <>
+      <Dashboard />
+    </>
+  );
 }
 
 export default App;

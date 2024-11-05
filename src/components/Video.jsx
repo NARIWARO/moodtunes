@@ -1,4 +1,4 @@
-import { React, useRef, useEffect, useState } from "react";
+import { React, useRef, useEffect, useState, useContext } from "react";
 import * as faceapi from "face-api.js";
 import {
   Card,
@@ -8,13 +8,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Search } from "lucide-react";
+import { Camera, CameraOff, Search } from "lucide-react";
 import { fetchSongsByGenre } from "@/spotify/spotifyData";
+import { CameraContext } from "../context/cameraContext";
 
 const Video = () => {
+  const { setGenre } = useContext(CameraContext);
+
   const vidRef = useRef(null);
   const canRef = useRef(null);
-  const [result, setResult] = useState("happy");
+  const [result, setResult] = useState("");
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [currentSong, setCurrentSong] = useState(null);
   const [audio] = useState(new Audio()); // Create a new audio object
@@ -41,7 +44,7 @@ const Video = () => {
     const token = localStorage.getItem("token");
     const fetchedSongs = await fetchSongsByGenre(token, result);
     setSongs(fetchedSongs);
-    console.log(fetchedSongs)
+    console.log(fetchedSongs);
   };
 
   // Function to play a song
@@ -72,27 +75,32 @@ const Video = () => {
   const clearCanvas = () => {
     const canvas = canRef.current;
     if (canvas) {
-      const context = canvas.getContext('2d');
+      const context = canvas.getContext("2d");
       context.clearRect(0, 0, canvas.width, canvas.height);
     }
   };
 
   const detectFaces = async () => {
     if (vidRef.current) {
-      const detections = await faceapi.detectAllFaces(vidRef.current, new faceapi.TinyFaceDetectorOptions())
+      const detections = await faceapi
+        .detectAllFaces(vidRef.current, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceExpressions();
       const canvas = canRef.current;
-      const displaySize = { width: vidRef.current.width, height: vidRef.current.height };
+      const displaySize = {
+        width: vidRef.current.width,
+        height: vidRef.current.height,
+      };
       faceapi.matchDimensions(canvas, displaySize);
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
-      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
       faceapi.draw.drawDetections(canvas, resizedDetections);
       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
       const faceexp = detections[0]?.expressions; // Ensure there's at least one detection
       const mood = highestIntegerKeyValuePair(faceexp);
-      setResult(mood); // Overwrite the default expression - happy
+      setResult(mood);
+      setGenre(mood); // Overwrite the default expression - happy
 
       const songs = filterSongsByMood(mood);
       if (songs.length > 0) {
@@ -115,7 +123,7 @@ const Video = () => {
     if (vidRef.current && vidRef.current.srcObject) {
       const stream = vidRef.current.srcObject;
       const tracks = stream.getTracks();
-      tracks.forEach(track => {
+      tracks.forEach((track) => {
         track.stop();
       });
       vidRef.current.srcObject = null;
@@ -137,10 +145,10 @@ const Video = () => {
     const loadModels = async () => {
       try {
         await Promise.all([
-          faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-          faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-          faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-          faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+          faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+          faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+          faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+          faceapi.nets.faceExpressionNet.loadFromUri("/models"),
         ]);
         startVideo();
       } catch (e) {
@@ -162,37 +170,36 @@ const Video = () => {
   return (
     <>
       <Card className="flex flex-col gap-2 box-content relative p-2 border-none bg-transparent h-full">
-        <div className="bg-[#282a31] rounded-md">
-          <div className="text-custom-white p-3 rounded-md bg-custom-gray text-lg font-bold text-center">
-            <a href="#">
-              <b>Moodtunes</b>
-            </a>
-          </div>
-          <CardHeader>
-            <CardTitle className="text-xl text-custom-white">Verifying Expressions...</CardTitle>
-            <CardDescription>Make sure good amount of light reflects on your face for better evaluation of face expressions</CardDescription>
-          </CardHeader>
-          <CardContent style={{ position: 'relative', width: '360px', height: '280px' }} className="flex items-center justify-center rounded-xl p-2 ">
-            <video ref={vidRef} autoPlay muted width="340" height="255" style={{ position: 'absolute', top: 10 }} className="rounded-xl " />
-            <canvas ref={canRef} width="340" height="255" style={{ position: 'absolute', top: 10, zIndex: 1 }} className="" />
-          </CardContent>
-          <CardFooter className="flex item-center justify-center p-4">
-            <button onClick={toggleCamera} style={{ zIndex: 2 }} className="w-full bg-custom-red text-custom-white font-bold p-2 rounded-xl">
-              {isCameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
-            </button>
-          </CardFooter>
-          <div className="bg-white m-2 p-3 rounded-sm flex flex-row justify-between">
-            <div className="">
-              <h5 className="text-sm"><i>Your current mood is...</i></h5>
-              <h3 className="text-xl font-bold">{result}</h3>
-            </div>
-            <div className="">
-              <button>
-                <Search onClick={handleGenreFetch} />
-              </button>
-            </div>
-          </div>
-        </div>
+        <CardContent
+          style={{ position: "relative", width: "360px", height: "280px" }}
+          className="flex items-center justify-center rounded-xl p-2 "
+        >
+          <video
+            ref={vidRef}
+            autoPlay
+            muted
+            width="340"
+            height="255"
+            style={{ position: "absolute", top: 10 }}
+            className="rounded-xl "
+          />
+          <canvas
+            ref={canRef}
+            width="340"
+            height="255"
+            style={{ position: "absolute", top: 10, zIndex: 1 }}
+            className=""
+          />
+        </CardContent>
+        <CardFooter className="flex item-center justify-center  max-w-min  p-4">
+          <button
+            onClick={toggleCamera}
+            style={{ zIndex: 2 }}
+            className="w-full text-black font-semibold p-2 rounded-xl"
+          >
+            {isCameraOn ? <CameraOff /> : <Camera className="text-white" />}
+          </button>
+        </CardFooter>
       </Card>
     </>
   );

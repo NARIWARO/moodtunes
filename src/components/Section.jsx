@@ -1,26 +1,39 @@
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { useContext } from "react";
+import { SongsListContext } from "@/context/songListContext";
+import SearchedSongs from "./SearchedSongs";
 import Recomended from "./Recomended";
 import MoodAi from "./MoodAi";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import GenreSongs from "./GenreSongs";
+import { GenreSongsListContext } from "@/context/genreSongList";
 const Section = () => {
+  const { songList } = useContext(SongsListContext);
+  const { genreSongs } = useContext(GenreSongsListContext);
   return (
     <>
-      <Tabs
-        defaultValue="recomended"
-        className="bg-black w-full flex-1 min-h-0 overflow-y-auto"
-      >
-        <TabsList className="bg-black w-full flex justify-end pr-6 text-white rounded-none p-1 ">
-          <TabsTrigger value="recomended">recommended</TabsTrigger>
-          <TabsTrigger value="moodai">moodAi</TabsTrigger>
-        </TabsList>
-        <TabsContent value="recomended">
-          <Recomended />
-        </TabsContent>
-        <TabsContent value="moodai">
-          <MoodAi />
-        </TabsContent>
-      </Tabs>
+      <div className=" h-screen">
+        {songList && songList.length > 0 ? (
+          <>
+            <GenreSongs songs={genreSongs} />
+          </>
+        ) : (
+          <Tabs defaultValue="recommended" className="w-full h-full bg-black ">
+            <TabsList className="text-white w-full justify-end flex gap-2 ">
+              <TabsTrigger value="recommended" className="">
+                recommended
+              </TabsTrigger>
+              <TabsTrigger value="moodai">moodAi</TabsTrigger>
+            </TabsList>
+            <TabsContent value="recommended">
+              {" "}
+              <Recomended />
+            </TabsContent>
+            <TabsContent value="moodai">
+              <MoodAi />
+            </TabsContent>
+          </Tabs>
+        )}
+      </div>
     </>
   );
 };

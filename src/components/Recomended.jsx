@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import MusicCard from "./MusicCard";
 import ArtistCard from "./ArtistCard";
 

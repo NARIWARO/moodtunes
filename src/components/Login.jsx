@@ -8,7 +8,7 @@ const Login = () => {
       <div className="h-screen w-full p-2 flex flex-col justify-center items-center bg-black">
         <div className="text-white">
           <h1 className=" text-9xl font-bold">moodtunes</h1>
-          <h6 className="text-center m-2 font-semibold">
+          <h6 className="text-center m-2 font-semibold text-zinc-400">
             looks like you have logged out.
           </h6>
         </div>

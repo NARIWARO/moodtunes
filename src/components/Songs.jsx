@@ -12,17 +12,6 @@ import {
   pauseSong,
 } from "@/spotify/spotifyData";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
-import { Separator } from "@/components/ui/separator";
-
 const Songs = (props) => {
   const [songs, setSongs] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,13 +24,6 @@ const Songs = (props) => {
     };
     defaultSongs();
   }, []);
-
-  const handleGenreFetch = async (genre) => {
-    const token = localStorage.getItem("token");
-    const fetchedSongs = await fetchSongsByGenre(token, searchQuery);
-    setSongs(fetchedSongs);
-    console.log(fetchedSongs);
-  };
 
   const handleSearch = async () => {
     const token = localStorage.getItem("token");
