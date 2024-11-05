@@ -1,39 +1,48 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Play, Search } from "lucide-react";
+
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import MusicCard from "./MusicCard";
+import ArtistCard from "./ArtistCard";
 
 const Recomended = () => {
   return (
     <>
-      <div className=" text-white w-full p-4 flex flex-col gap-4">
-        <h1 className="text-3xl font-semibold">Recomended Songs</h1>
-        <div className="">
-          <Card className="w-[200px] max-h-min bg-black hover:bg-zinc-800 border-none flex flex-col items-start">
-            <CardContent class="w-full h-42 relative p-2">
-              <img
-                src="https://imgs.search.brave.com/F0U3ulHqblbB8ZhUUol_gvcCv1hRi2lWK_44t1P5GnY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jLnNh/YXZuY2RuLmNvbS81/MzgvTWFraW5nLU1l/bW9yaWVzLUVuZ2xp/c2gtMjAyMy0yMDIz/MDgxODA3NTAxNS01/MDB4NTAwLmpwZw"
-                alt="Image"
-                class="w-full h-full object-cover rounded"
-              />
-            </CardContent>
-            <CardFooter className="text-zinc-400 flex flex-row items-start  justify-between p-2 w-full">
-              <div className="">
-                <h5 className="font-bold">Softly</h5>
-                <h6 className="font-semibold">karan aujla</h6>
-              </div>
-              <div className="text-zinc-400 flex flex-col items-start max-w-full h-full gap-3 ">
-                <button className="p-2 bg-green-500 rounded-full text-black ">
-                  <Play />
-                </button>
-              </div>
-            </CardFooter>
-          </Card>
+      <div className=" text-white w-full p-4 flex flex-col gap-3">
+        <div className="flex flex-row justify-between">
+          <h1 className="text-3xl font-semibold">Recomended Songs</h1>
+          <h6 className="text-zinc-700">
+            Listen songs based on your mood, using{" "}
+            <span className="font-semibold underline">moodAi</span>
+          </h6>
+        </div>
+        <ScrollArea className="w-full whitespace-nowrap rounded-md border-none px-8">
+          <div className="flex w-max space-x-4 p-4 pb-6 gap-3">
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+          </div>
+          <ScrollBar orientation="horizontal" className="bg-none px-9" />
+        </ScrollArea>
+
+        <div className="mt-1">
+          <h1 className="text-3xl font-semibold">Artists you may like</h1>
+          <div className="w-full  flex flex-row gap-16 px-4 justify-start">
+            <ArtistCard />
+            <ArtistCard />
+            <ArtistCard />
+            <ArtistCard />
+            <ArtistCard />
+            <ArtistCard />
+            <ArtistCard />
+            <ArtistCard />
+          </div>
         </div>
       </div>
     </>
