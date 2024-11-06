@@ -22,6 +22,12 @@ const Video = () => {
   const [currentSong, setCurrentSong] = useState(null);
   const [audio] = useState(new Audio()); // Create a new audio object
 
+  useEffect(() => {
+    if (result) {
+      setGenre(result); // Update genre in context only when `result` changes
+    }
+  }, [result, setGenre]);
+
   // Define song playlists based on moods
   const playlists = {
     happy: [
@@ -36,9 +42,9 @@ const Video = () => {
   };
 
   // Filter function to fetch songs based on the detected mood
-  const filterSongsByMood = (mood) => {
-    return playlists[mood] || [];
-  };
+  // const filterSongsByMood = (mood) => {
+  //   return playlists[mood] || [];
+  // };
 
   const handleGenreFetch = async (genre) => {
     const token = localStorage.getItem("token");
@@ -48,14 +54,14 @@ const Video = () => {
   };
 
   // Function to play a song
-  const playSong = (song) => {
-    if (currentSong) {
-      audio.pause(); // Stop the current song
-    }
-    audio.src = song.url; // Set the new song URL
-    audio.play(); // Play the new song
-    setCurrentSong(song);
-  };
+  // const playSong = (song) => {
+  //   if (currentSong) {
+  //     audio.pause(); // Stop the current song
+  //   }
+  //   audio.src = song.url; // Set the new song URL
+  //   audio.play(); // Play the new song
+  //   setCurrentSong(song);
+  // };
 
   const highestIntegerKeyValuePair = (obj) => {
     if (!obj || Object.keys(obj).length === 0) return null;
@@ -100,12 +106,12 @@ const Video = () => {
       const faceexp = detections[0]?.expressions; // Ensure there's at least one detection
       const mood = highestIntegerKeyValuePair(faceexp);
       setResult(mood);
-      setGenre(mood); // Overwrite the default expression - happy
+      // setGenre(mood); // Overwrite the default expression - happy
 
-      const songs = filterSongsByMood(mood);
-      if (songs.length > 0) {
-        playSong(songs[0]); // Play the first song from the filtered mood playlist
-      }
+      // const songs = filterSongsByMood(mood);
+      // if (songs.length > 0) {
+      //   playSong(songs[0]); // Play the first song from the filtered mood playlist
+      // }
     }
   };
 
@@ -197,7 +203,11 @@ const Video = () => {
             style={{ zIndex: 2 }}
             className="w-full text-black font-semibold p-2 rounded-xl"
           >
-            {isCameraOn ? <CameraOff /> : <Camera className="text-white" />}
+            {isCameraOn ? (
+              <CameraOff className="text-white" />
+            ) : (
+              <Camera className="text-white" />
+            )}
           </button>
         </CardFooter>
       </Card>

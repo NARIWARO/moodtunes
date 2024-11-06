@@ -19,28 +19,34 @@ export const fetchSpotifyUserData = async () => {
     throw error;
   }
 };
-
 export const fetchSongsByGenre = async (genre) => {
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/recommendations`,
       {
         headers: {
-          Authorization: `Bearer ${getToken()}`,
+          Authorization: `Bearer ${getToken()}`, // Make sure getToken() returns a valid token
         },
         params: {
           seed_genres: genre,
-          limit: 20, // You can adjust the limit as needed
+          limit: 20, // Adjust the number of tracks as needed
         },
       }
     );
-    return response.data.tracks; // Return the list of tracks
+
+    // Ensure the response contains tracks
+    if (response.data && response.data.tracks) {
+      return response.data.tracks;
+    } else {
+      console.error("No tracks found in response.");
+      return []; // Return an empty array if no tracks are found
+    }
   } catch (error) {
     console.error(
-      "Error fetching songs by genre",
+      "Error fetching songs by genre:",
       error.response || error.message
     );
-    throw error;
+    throw error; // Re-throw the error to be handled further if necessary
   }
 };
 

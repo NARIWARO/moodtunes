@@ -5,7 +5,6 @@ import Dashboard from "./components/Dashboard";
 
 import Login from "./components/Login";
 import { setClientToken } from "./spotify/spotifyLogin";
-
 import { fetchSpotifyUserData } from "./spotify/spotifyData";
 
 function App() {

@@ -7,17 +7,20 @@ import { SongsListProvider } from "./context/songListContext.jsx";
 import { GenreSongsListContextProvider } from "./context/genreSongList.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { CameraContextProvider } from "./context/cameraContext.jsx"; // Adjust path as needed
+import { PlaybackProvider } from "./context/PlaybackContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <CameraContextProvider>
-      <SpotifyProvider>
-        <SongsListProvider>
-          <GenreSongsListContextProvider>
-            <App />
-          </GenreSongsListContextProvider>
-        </SongsListProvider>
-      </SpotifyProvider>
+      <PlaybackProvider>
+        <SpotifyProvider>
+          <SongsListProvider>
+            <GenreSongsListContextProvider>
+              <App />
+            </GenreSongsListContextProvider>
+          </SongsListProvider>
+        </SpotifyProvider>
+      </PlaybackProvider>
     </CameraContextProvider>
   </BrowserRouter>
 );

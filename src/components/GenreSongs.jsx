@@ -1,30 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import Song from "./Song";
-import {
-  fetchSongsByGenre,
-  searchSongs,
-  playSong,
-  pauseSong,
-} from "@/spotify/spotifyData";
-import { CameraContext } from "@/context/cameraContext";
 import { GenreSongsListContext } from "@/context/genreSongList";
 
-const GenreSongs = (props) => {
-  const [currentGenre, setCurrentGenre] = useState("");
+const GenreSongs = () => {
   const { genreList } = useContext(GenreSongsListContext);
-  const genre = useContext(CameraContext);
-
-  useEffect(() => {
-    setCurrentGenre(genre);
-  }, [currentGenre]);
-
-  const handleGenreFetch = async (genre) => {
-    const fetchedSongs = await fetchSongsByGenre(currentGenre);
-    console.log(currentGenre);
-    setSongs(fetchedSongs);
-  };
-
+  console.log(genreList);
   return (
     <>
       <div className=" ">
@@ -36,8 +17,8 @@ const GenreSongs = (props) => {
           </div>
           <div className="">
             <ScrollArea className="h-96  overflow-y-auto rounded-md scrollbar-thin scrollbar-thumb-zinc-500 scrollbar-track-transparent">
-              {genreList.map((csong) => (
-                <Song key={csong.id} songs={csong} /> // Pass the song object to Song component
+              {genreList.map((song) => (
+                <Song key={song.id} songs={song} /> // Pass the song object to Song component
               ))}
             </ScrollArea>
           </div>

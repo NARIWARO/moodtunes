@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import CameraCard from "./CameraCard";
 
 import GenreSongs from "../components/GenreSongs";
-import { GenreSongsListContext } from "@/context/genreSongList";
+// import { GenreSongsListContext } from "@/context/genreSongList";
 
 const MoodAi = () => {
-  const { genreList } = useContext(GenreSongsListContext);
+  // const { genreList } = useContext(GenreSongsListContext);
 
   return (
     <>
@@ -25,8 +25,7 @@ const MoodAi = () => {
             <>
               <div className=" h-full">
                 <div className="  flex flex-col justify-center h-96 ">
-                  <h1 className="text-black">dfsdfs</h1>
-                  <GenreSongs genreList={genreList} />
+                  <GenreSongs />
                 </div>
               </div>
             </>
