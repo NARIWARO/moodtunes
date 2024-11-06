@@ -4,6 +4,9 @@ const getToken = () => {
   const token = localStorage.getItem("token");
   return token;
 };
+const clearToken = () => {
+  localStorage.removeItem("token");
+};
 
 export const fetchSpotifyUserData = async () => {
   try {
@@ -13,6 +16,9 @@ export const fetchSpotifyUserData = async () => {
       },
     });
 
+    if (response.status === 401) {
+      clearToken();
+    }
     return response.data;
   } catch (error) {
     console.error("Error fetching user data", error.response || error.message);

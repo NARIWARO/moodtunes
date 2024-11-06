@@ -33,13 +33,12 @@ const Nav = () => {
 
   const { stopSong } = useContext(PlaybackContext); // Get stopSong from context
   const handleGoToDashboard = () => {
-    stopSong(); // Stop the song when navigating to the dashboard
+    stopSong();
   };
 
   const fetchSongs = async () => {
     try {
       const data = await searchSongs(searchQuery);
-      console.log(searchQuery);
       setSongList(data);
     } catch (error) {
       console.error("Error fetching songs:", error);

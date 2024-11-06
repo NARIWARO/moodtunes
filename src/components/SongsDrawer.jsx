@@ -14,7 +14,6 @@ import PlayPauseButton from "./PlayPauseButton";
 
 const SongDrawer = (props) => {
   const song = props.song;
-  console.log(song);
   const { name, artists, album } = props.song;
 
   const handlePlay = (track) => {

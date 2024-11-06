@@ -4,10 +4,8 @@ import Song from "./Song";
 import SongDrawer from "./SongsDrawer";
 import { SongsListContext } from "@/context/songListContext";
 
-const SearchedSongs = (props) => {
-  const songs = props.songs;
-  const { songList, setSongList } = useContext(SongsListContext);
-  console.log(songList);
+const SearchedSongs = () => {
+  const { songList } = useContext(SongsListContext);
 
   useEffect(() => {}, []);
 
