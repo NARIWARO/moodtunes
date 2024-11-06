@@ -8,7 +8,7 @@ const Dashboard = () => {
   // const { songList } = useContext(SongsListContext)
   return (
     <>
-      <div className="h-screen">
+      <div className="h-screen bg-black">
         <>
           <Nav />
           <Section />

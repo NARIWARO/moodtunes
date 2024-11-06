@@ -20,7 +20,7 @@ const Recomended = () => {
   }, []);
   return (
     <>
-      <div className=" text-white w-full p-4 flex flex-col gap-">
+      <div className=" text-white w-full p-4 flex flex-col gap-10  justify-center">
         <div className="flex flex-row justify-between">
           <h1 className="text-3xl font-semibold">Recomended Songs</h1>
           <h6 className="text-zinc-700">

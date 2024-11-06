@@ -11,7 +11,7 @@ const Section = () => {
   const { genreSongs } = useContext(GenreSongsListContext);
   return (
     <>
-      <div className=" h-screen">
+      <div className="max-h-screen overflow-y-auto bg-black">
         {songList && songList.length > 0 ? (
           <>
             <GenreSongs songs={genreSongs} />
