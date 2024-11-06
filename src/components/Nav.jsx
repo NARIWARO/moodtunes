@@ -9,16 +9,37 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
 import { fetchSpotifyUserData, searchSongs } from "@/spotify/spotifyData";
+import { Button } from "./ui/button";
+import SongsList from "./SongsList";
+import SearchedSongs from "./SearchedSongs";
+import { PlaybackContext } from "../context/PlaybackContext";
 
 const Nav = () => {
   const { userData, setUserData } = useContext(SpotifyContext);
   const { songList, setSongList } = useContext(SongsListContext);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const { stopSong } = useContext(PlaybackContext); // Get stopSong from context
+  const handleGoToDashboard = () => {
+    stopSong(); // Stop the song when navigating to the dashboard
+  };
+
   const fetchSongs = async () => {
     try {
       const data = await searchSongs(searchQuery);
+      console.log(searchQuery);
       setSongList(data);
     } catch (error) {
       console.error("Error fetching songs:", error);
@@ -61,11 +82,38 @@ const Nav = () => {
             placeholder="Search for songs..."
             className="border-none px-3 py-1 rounded-full bg-zinc-700 text-white"
           />
-          <button
-            className="text-zinc-600 hover:text-zinc-400"
-            onClick={() => navigate("/searched")}
-          >
-            <Search onClick={fetchSongs} />
+          <button className="text-zinc-600 hover:text-zinc-400">
+            <Drawer className="mt-3  ">
+              <DrawerTrigger>
+                {" "}
+                <Search onClick={fetchSongs} />
+              </DrawerTrigger>
+
+              <DrawerContent className="bg-black border-none w-screen flex  ">
+                <div className="w-full  flex flex-col justify-center items-center">
+                  <DrawerHeader>
+                    <DrawerTitle className="text-zinc-700 text-2xl font-bold">
+                      Listen to your favourite songs, freely.
+                    </DrawerTitle>
+                    <DrawerDescription className="text-zinc-700  font-semibold">
+                      click on the button below to jump to dashboard.
+                    </DrawerDescription>
+                  </DrawerHeader>
+                </div>
+                <div className="w-screen flex justify-center">
+                  <div className="ml-[15%] w-full">
+                    <SearchedSongs songs={songList} />
+                  </div>
+                </div>
+                <DrawerFooter className="mx-auto">
+                  <DrawerClose asChild>
+                    <Button variant="outline" onClick={handleGoToDashboard}>
+                      go to dashboard
+                    </Button>
+                  </DrawerClose>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
           </button>
         </div>
 

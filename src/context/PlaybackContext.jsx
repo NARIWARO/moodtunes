@@ -38,9 +38,19 @@ export const PlaybackProvider = ({ children }) => {
     }
   };
 
+  // Stop the current song (when navigating to another page, for example)
+  const stopSong = () => {
+    if (currentlyPlayingAudio) {
+      currentlyPlayingAudio.pause();
+      setCurrentlyPlayingAudio(null);
+      setIsPlaying(false);
+      setCurrentTrack(null);
+    }
+  };
+
   return (
     <PlaybackContext.Provider
-      value={{ isPlaying, currentTrack, togglePlayPause }}
+      value={{ isPlaying, currentTrack, togglePlayPause, stopSong }}
     >
       {children}
     </PlaybackContext.Provider>

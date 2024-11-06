@@ -52,7 +52,7 @@ export const fetchSongsByGenre = async (genre) => {
 
 export const searchSongs = async (query) => {
   try {
-    const response = await axios.get(`https://api.spotify.com/v1/search`, {
+    const response = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
@@ -62,10 +62,30 @@ export const searchSongs = async (query) => {
         limit: 20, // Adjust limit as needed
       },
     });
-    return response.data.tracks.items; // Return the list of tracks found
+
+    // Check if the response contains tracks items
+    if (response.data && response.data.tracks && response.data.tracks.items) {
+      return response.data.tracks.items; // Return the list of tracks found
+    } else {
+      console.error("No tracks found in the response.");
+      return []; // Return an empty array if no tracks are found
+    }
   } catch (error) {
-    console.error("Error searching for songs", error.response || error.message);
-    throw error;
+    // Enhanced error handling
+    if (error.response) {
+      // Server returned a response
+      console.error(
+        "Error searching for songs:",
+        error.response.data.error.message
+      );
+    } else if (error.request) {
+      // Request was made but no response was received
+      console.error("No response received from Spotify API.");
+    } else {
+      // Something else went wrong
+      console.error("Error setting up the request:", error.message);
+    }
+    throw error; // Re-throw the error so that it can be caught by a caller if needed
   }
 };
 

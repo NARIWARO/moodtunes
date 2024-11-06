@@ -5,7 +5,6 @@ import { GenreSongsListContext } from "@/context/genreSongList";
 
 const GenreSongs = () => {
   const { genreList } = useContext(GenreSongsListContext);
-  console.log(genreList);
   return (
     <>
       <div className=" ">
