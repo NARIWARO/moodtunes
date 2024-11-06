@@ -8,7 +8,7 @@ const MusicCard = (props) => {
   const { name, artists, album } = props.song;
   return (
     <div className="">
-      <Card className="w-[160px] max-h-min bg-black hover:bg-zinc-800 border-none flex flex-col items-start">
+      <Card className="w-[270px] max-h-min bg-black hover:bg-zinc-800 border-none flex flex-col items-start">
         <CardContent class="w-full h-42 relative p-2">
           <img
             src={album.images[0].url}

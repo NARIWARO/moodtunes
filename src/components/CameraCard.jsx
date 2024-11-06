@@ -12,6 +12,7 @@ import { CameraContext } from "../context/cameraContext";
 import Video from "./Video";
 import { fetchSongsByGenre } from "@/spotify/spotifyData";
 import { GenreSongsListContext } from "@/context/genreSongList";
+import { Separator } from "./ui/separator";
 
 const CameraCard = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +43,7 @@ const CameraCard = () => {
   };
 
   return (
-    <Card className="bg-transparent border-none">
+    <Card className="bg-transparent border-none flex flex-col gap-4">
       <CardHeader>
         <CardTitle className="text-zinc-700 font-bold">
           verifying expressions...
@@ -50,33 +51,36 @@ const CameraCard = () => {
         <CardDescription className="text-zinc-700 font-semibold">
           align your face with camera for better experience.
         </CardDescription>
-        <CardContent className="w-full h-72">
-          <Video />
-        </CardContent>
-        <CardFooter>
-          <div className="w-4/5 flex flex-row justify-between items-center">
-            <div className="flex flex-col p-1 gap-1">
-              <h6 className="text-zinc-700 font-semibold">
-                looks like your current mood is{" "}
-              </h6>
-              <h3 className="text-2xl text-zinc-500 font-bold">
-                {genre || "happy"}
-              </h3>
-            </div>
-            <div>
-              <button className="text-zinc-600 hover:text-zinc-400">
-                <Search
-                  onClick={() => {
-                    updateGenre(genre); // Update genre
-                    fetchSongs(); // Fetch songs for the updated genre
-                  }}
-                  className="w-6 h-6"
-                />
-              </button>
-            </div>
-          </div>
-        </CardFooter>
       </CardHeader>
+      <CardContent className="w-full h-72">
+        <Video />
+        <CardDescription className="text-zinc-700 font-semibold text-sm">
+          click on the camera icon in video to turn on/off camera.
+        </CardDescription>
+      </CardContent>
+      <CardFooter className="">
+        <div className="w-4/5 flex flex-row justify-between items-center">
+          <div className="flex flex-col p-1 gap-1">
+            <h6 className="text-zinc-700 font-semibold text-lg">
+              looks like your current mood is{" "}
+            </h6>
+            <h3 className="text-2xl text-zinc-500 font-bold">
+              {genre || "happy"}
+            </h3>
+          </div>
+          <div>
+            <button className="text-zinc-600 hover:text-zinc-400">
+              <Search
+                onClick={() => {
+                  updateGenre(genre); // Update genre
+                  fetchSongs(); // Fetch songs for the updated genre
+                }}
+                className="w-6 h-6"
+              />
+            </button>
+          </div>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

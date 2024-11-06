@@ -204,7 +204,7 @@ const Video = () => {
             className="w-full text-black font-semibold p-2 rounded-xl"
           >
             {isCameraOn ? (
-              <CameraOff className="text-white" />
+              <CameraOff className="text-red-500" />
             ) : (
               <Camera className="text-white" />
             )}
