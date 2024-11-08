@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ScrollArea } from "./ui/scroll-area";
+import { ScrollArea } from "../ui/scroll-area";
 import Song from "./Song";
 import { GenreSongsListContext } from "@/context/genreSongList";
 
@@ -11,7 +11,7 @@ const GenreSongs = () => {
         <div className="">
           <div className="">
             <h3 className="text-2xl font-bold text-zinc-400 mb-6 ">
-              Songs based on your genre.
+              Songs based on your genre.fsfsdfds
             </h3>
           </div>
           <div className="">

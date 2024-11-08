@@ -1,7 +1,7 @@
 import { Power, Search } from "lucide-react";
 import { React, useContext, useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { SpotifyContext } from "../context/userDataContext";
+import { SpotifyContext } from "../../context/userDataContext";
 import { SongsListContext } from "@/context/songListContext";
 import {
   Tooltip,
@@ -21,10 +21,10 @@ import {
 } from "@/components/ui/drawer";
 
 import { fetchSpotifyUserData, searchSongs } from "@/spotify/spotifyData";
-import { Button } from "./ui/button";
-import SongsList from "./SongsList";
+import { Button } from "../ui/button";
+import SongsList from "../SongsList";
 import SearchedSongs from "./SearchedSongs";
-import { PlaybackContext } from "../context/PlaybackContext";
+import { PlaybackContext } from "../../context/PlaybackContext";
 
 const Nav = () => {
   const { userData, setUserData } = useContext(SpotifyContext);

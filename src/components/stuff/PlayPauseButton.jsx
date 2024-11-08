@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Play, Pause } from "lucide-react";
-import { PlaybackContext } from "../context/PlaybackContext";
+import { PlaybackContext } from "../../context/PlaybackContext";
 
 const PlayPauseButton = ({ song }) => {
   const { isPlaying, currentTrack, togglePlayPause } =

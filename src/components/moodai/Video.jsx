@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Camera, CameraOff, Search } from "lucide-react";
 import { fetchSongsByGenre } from "@/spotify/spotifyData";
-import { CameraContext } from "../context/cameraContext";
+import { CameraContext } from "../../context/cameraContext";
 
 const Video = () => {
   const { setGenre } = useContext(CameraContext);

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/home/Dashboard";
 
-import Login from "./components/Login";
+import Login from "./components/home/Login";
 import { setClientToken } from "./spotify/spotifyLogin";
 import { fetchSpotifyUserData } from "./spotify/spotifyData";
 

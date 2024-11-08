@@ -1,6 +1,6 @@
 import React from "react";
 import CameraCard from "./CameraCard";
-import GenreSongs from "../components/GenreSongs";
+import GenreSongs from "./GenreSongs";
 
 const MoodAi = () => {
   return (

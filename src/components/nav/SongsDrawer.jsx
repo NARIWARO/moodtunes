@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Play } from "lucide-react";
 import { playSong } from "@/spotify/spotifyData";
-import PlayPauseButton from "./PlayPauseButton";
+import PlayPauseButton from "../stuff/PlayPauseButton";
 
 const SongDrawer = (props) => {
   const song = props.song;

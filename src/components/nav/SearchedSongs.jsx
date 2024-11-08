@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { ScrollArea } from "./ui/scroll-area";
-import Song from "./Song";
+import { ScrollArea } from "../ui/scroll-area";
+
 import SongDrawer from "./SongsDrawer";
 import { SongsListContext } from "@/context/songListContext";
 

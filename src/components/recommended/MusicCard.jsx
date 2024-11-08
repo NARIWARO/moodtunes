@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, CardContent, CardFooter } from "./ui/card";
+import { Card, CardContent, CardFooter } from "../ui/card";
 import { playSong } from "@/spotify/spotifyData";
-import PlayPauseButton from "./PlayPauseButton";
+import PlayPauseButton from "../stuff/PlayPauseButton";
 
 const MusicCard = (props) => {
   const song = props.song;

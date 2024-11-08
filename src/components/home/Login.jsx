@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { loginEndpoint } from "@/spotify/spotifyLogin";
 
 const Login = () => {

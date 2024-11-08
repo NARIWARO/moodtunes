@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-
-import { SongsListContext } from "@/context/songListContext";
+import React, { useState } from "react";
 import Section from "./Section";
-import Nav from "./Nav";
+import Nav from "../nav/Nav";
 
 const Dashboard = () => {
-  // const { songList } = useContext(SongsListContext)
   return (
     <>
       <div className="h-screen bg-black">

@@ -6,19 +6,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
 import { Search } from "lucide-react";
-import { CameraContext } from "../context/cameraContext";
+import { CameraContext } from "../../context/cameraContext";
 import Video from "./Video";
 import { fetchSongsByGenre } from "@/spotify/spotifyData";
 import { GenreSongsListContext } from "@/context/genreSongList";
-import { Separator } from "./ui/separator";
 
 const CameraCard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { genre, setGenre } = useContext(CameraContext);
-  const { genreList, setGenreList } = useContext(GenreSongsListContext);
+  const { setGenreList } = useContext(GenreSongsListContext);
 
   // Fetch songs based on the current genre
   const fetchSongs = async () => {
