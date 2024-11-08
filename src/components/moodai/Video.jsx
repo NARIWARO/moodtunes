@@ -1,15 +1,8 @@
 import { React, useRef, useEffect, useState, useContext } from "react";
 import * as faceapi from "face-api.js";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Camera, CameraOff, Search } from "lucide-react";
-import { fetchSongsByGenre } from "@/spotify/spotifyData";
+
 import { CameraContext } from "../../context/cameraContext";
 
 const Video = () => {
@@ -19,7 +12,6 @@ const Video = () => {
   const canRef = useRef(null);
   const [result, setResult] = useState("");
   const [isCameraOn, setIsCameraOn] = useState(false);
-  const [currentSong, setCurrentSong] = useState(null);
   const [audio] = useState(new Audio()); // Create a new audio object
 
   useEffect(() => {
@@ -27,41 +19,6 @@ const Video = () => {
       setGenre(result); // Update genre in context only when `result` changes
     }
   }, [result, setGenre]);
-
-  // Define song playlists based on moods
-  const playlists = {
-    happy: [
-      { title: "Happy Song 1", artist: "Artist 1", url: "url_to_happy_song_1" },
-      { title: "Happy Song 2", artist: "Artist 2", url: "url_to_happy_song_2" },
-    ],
-    sad: [
-      { title: "Sad Song 1", artist: "Artist 1", url: "url_to_sad_song_1" },
-      { title: "Sad Song 2", artist: "Artist 2", url: "url_to_sad_song_2" },
-    ],
-    // Add more moods and songs as needed
-  };
-
-  // Filter function to fetch songs based on the detected mood
-  // const filterSongsByMood = (mood) => {
-  //   return playlists[mood] || [];
-  // };
-
-  const handleGenreFetch = async (genre) => {
-    const token = localStorage.getItem("token");
-    const fetchedSongs = await fetchSongsByGenre(token, result);
-    setSongs(fetchedSongs);
-    console.log(fetchedSongs);
-  };
-
-  // Function to play a song
-  // const playSong = (song) => {
-  //   if (currentSong) {
-  //     audio.pause(); // Stop the current song
-  //   }
-  //   audio.src = song.url; // Set the new song URL
-  //   audio.play(); // Play the new song
-  //   setCurrentSong(song);
-  // };
 
   const highestIntegerKeyValuePair = (obj) => {
     if (!obj || Object.keys(obj).length === 0) return null;
@@ -106,12 +63,6 @@ const Video = () => {
       const faceexp = detections[0]?.expressions; // Ensure there's at least one detection
       const mood = highestIntegerKeyValuePair(faceexp);
       setResult(mood);
-      // setGenre(mood); // Overwrite the default expression - happy
-
-      // const songs = filterSongsByMood(mood);
-      // if (songs.length > 0) {
-      //   playSong(songs[0]); // Play the first song from the filtered mood playlist
-      // }
     }
   };
 

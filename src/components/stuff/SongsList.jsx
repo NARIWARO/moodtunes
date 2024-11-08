@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import Song from "./moodai/Song";
+import Song from "../moodai/Song";
 const SongsList = (props) => {
   const songs = props.songs;
   return (

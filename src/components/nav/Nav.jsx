@@ -22,7 +22,6 @@ import {
 
 import { fetchSpotifyUserData, searchSongs } from "@/spotify/spotifyData";
 import { Button } from "../ui/button";
-import SongsList from "../SongsList";
 import SearchedSongs from "./SearchedSongs";
 import { PlaybackContext } from "../../context/PlaybackContext";
 
@@ -61,8 +60,6 @@ const Nav = () => {
   const handleLogout = () => {
     // Remove the access token from local storage
     localStorage.removeItem("token");
-    // // Optionally, you can redirect the user to the login page
-    window.location.href = "/"; // Adjust the path as needed
   };
 
   return (

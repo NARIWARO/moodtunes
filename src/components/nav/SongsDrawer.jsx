@@ -1,24 +1,19 @@
-import React, { useContext, useEffect } from "react";
-import { SongsListContext } from "@/context/songListContext";
+import React from "react";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Play } from "lucide-react";
+
 import { playSong } from "@/spotify/spotifyData";
 import PlayPauseButton from "../stuff/PlayPauseButton";
 
 const SongDrawer = (props) => {
   const song = props.song;
   const { name, artists, album } = props.song;
-
-  const handlePlay = (track) => {
-    playSong(track);
-  };
 
   return (
     <>

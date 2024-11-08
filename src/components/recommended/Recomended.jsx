@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Select,
@@ -8,8 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-import MusicCard from "./MusicCard";
+import MusicCard from "../recommended/MusicCard";
 import { searchSongs } from "@/spotify/spotifyData";
 import { PlaybackContext } from "@/context/PlaybackContext";
 

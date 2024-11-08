@@ -30,8 +30,11 @@ const GenreSongs = () => {
                   <div className="">
                     <h3 className="text-zinc-700 font-semibold">
                       No song found for this{" "}
-                      <span className="font-bold"> mood.</span> Keep listening
-                      for other <span className="font-bold"> mood.</span>
+                      <span className="font-bold underline">
+                        {currentMood}.
+                      </span>{" "}
+                      Keep listening for other{" "}
+                      <span className="font-bold"> mood.</span>
                     </h3>
                   </div>
                 </div>

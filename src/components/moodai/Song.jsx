@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import { SongsListContext } from "@/context/songListContext";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -11,7 +10,6 @@ import PlayPauseButton from "../stuff/PlayPauseButton";
 
 const Song = (props) => {
   const song = props.songs;
-
   return (
     <>
       <Card
