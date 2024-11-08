@@ -19,7 +19,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
+import { toast } from "sonner";
 import { fetchSpotifyUserData, searchSongs } from "@/spotify/spotifyData";
 import { Button } from "../ui/button";
 import SearchedSongs from "./SearchedSongs";
@@ -61,6 +61,21 @@ const Nav = () => {
     // Remove the access token from local storage
     localStorage.removeItem("token");
   };
+
+  const showToast = () => {
+    toast("looks like access token expired", {
+      description:
+        "use logout button top right corner of the nav, and login again",
+      action: {
+        label: "cancel",
+      },
+    });
+  };
+  useEffect(() => {
+    if (userData.display_name === "expired") {
+      showToast();
+    }
+  }, [userData.display_name]);
 
   return (
     <div>
@@ -115,7 +130,11 @@ const Nav = () => {
 
         {/* profile */}
         <div className="flex flex-row gap-3 items-center ">
-          <h3 className="text-white font-semibold">{userData.display_name}</h3>
+          <h3 className="text-white font-semibold">
+            {userData.display_name === "expired"
+              ? "login again"
+              : userData.display_name}
+          </h3>
           <div className="flex flex-row gap-6">
             <Avatar>
               <AvatarImage src="" />
