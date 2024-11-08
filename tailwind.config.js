@@ -2,30 +2,28 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
-
     container: {
       center: true,
       padding: "2rem",
       screens: {
         "2xl": "1400px",
       },
-
     },
 
     extend: {
       colors: {
-        'custom-gray': '#282a31',
+        "custom-gray": "#282a31",
 
-        'custom-dark-cyan': '#091425',
-        'custom-red': '#ec6a32',
-        'custom-white': "#E6E2E1",
+        "custom-dark-cyan": "#091425",
+        "custom-red": "#ec6a32",
+        "custom-white": "#E6E2E1",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -36,7 +34,7 @@ module.exports = {
           foreground: "hsl(var(--primary-foreground))",
         },
         backgroundImage: {
-          'custom-gradient': 'linear-gradient(to right, #12243f, #e62314)',
+          "custom-gradient": "linear-gradient(to right, #12243f, #e62314)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -62,6 +60,16 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        animation: {
+          "pulse-wave": "pulse-wave 1.5s ease-in-out infinite",
+        },
+        keyframes: {
+          "pulse-wave": {
+            "0%": { transform: "scale(1)", opacity: "0.7" },
+            "50%": { transform: "scale(1.5)", opacity: "0.4" },
+            "100%": { transform: "scale(2)", opacity: "0" },
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -85,4 +93,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

@@ -16,7 +16,7 @@ import { GenreSongsListContext } from "@/context/genreSongList";
 const CameraCard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { genre, setGenre } = useContext(CameraContext);
+  const { genre, setGenre, setCurrentMood } = useContext(CameraContext);
   const { setGenreList } = useContext(GenreSongsListContext);
 
   // Fetch songs based on the current genre
@@ -26,8 +26,7 @@ const CameraCard = () => {
 
     try {
       const data = await fetchSongsByGenre(genre);
-      setGenreList(data); // Update genre list with fetched songs
-      console.log(data);
+      await setGenreList(data); // Update genre list with fetched songs
     } catch (error) {
       console.error("Error fetching songs:", error);
     } finally {
@@ -39,6 +38,10 @@ const CameraCard = () => {
   const updateGenre = (newGenre) => {
     setGenre(newGenre); // Update the genre in context
     fetchSongs(); // Fetch songs based on the updated genre
+  };
+
+  const updateMood = (mood) => {
+    setCurrentMood(genre);
   };
 
   return (
@@ -72,7 +75,7 @@ const CameraCard = () => {
               <Search
                 onClick={() => {
                   updateGenre(genre); // Update genre
-                  fetchSongs(); // Fetch songs for the updated genre
+                  updateMood();
                 }}
                 className="w-6 h-6"
               />

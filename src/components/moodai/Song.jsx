@@ -5,19 +5,12 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Play } from "lucide-react";
-import { playSong } from "@/spotify/spotifyData";
+import PlayPauseButton from "../stuff/PlayPauseButton";
 
 const Song = (props) => {
   const song = props.songs;
-  console.log(song);
-
-  const handlePlay = (track) => {
-    playSong(track);
-  };
 
   return (
     <>
@@ -43,12 +36,7 @@ const Song = (props) => {
           </div>
         </div>
         <CardFooter className="flex justify-center items-end">
-          <button
-            className="p-2 bg-green-500 rounded-full text-black"
-            onClick={handlePlay(song)}
-          >
-            <Play />
-          </button>
+          <PlayPauseButton song={song} />
         </CardFooter>
       </Card>
     </>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Play, Pause } from "lucide-react";
-import { PlaybackContext } from "../../context/PlaybackContext";
+import { PlaybackContext } from "@/context/PlaybackContext";
 
 const PlayPauseButton = ({ song }) => {
   const { isPlaying, currentTrack, togglePlayPause } =
@@ -11,7 +11,7 @@ const PlayPauseButton = ({ song }) => {
   return song.preview_url ? (
     <button
       onClick={() => togglePlayPause(song)}
-      className="bg-green-500 text-black border-none w-8 h-8 flex justify-center items-center rounded-[50%] hover:bg-blue transition ease-in-out duration-300"
+      className="bg-green-500 text-black border-none w-8 h-8 flex justify-center items-center rounded-full hover:bg-green-600 hover:scale-110 transition ease-in-out duration-200"
     >
       {isCurrentTrackPlaying ? (
         <Pause className="w-6 h-6" />
