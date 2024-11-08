@@ -4,10 +4,10 @@ import GenreSongs from "./GenreSongs";
 
 const MoodAi = () => {
   return (
-    <div className="text-white w-full p-4 flex flex-col overflow-hidden">
-      <div className="flex flex-row justify-between items-center mb-4">
+    <div className="text-white w-full py-4 px-none flex flex-col overflow-hidden">
+      <div className="flex flex-row justify-between items-center mb-4 ">
         <h1 className="text-3xl font-semibold">moodAi</h1>
-        <h6 className="text-zinc-700">
+        <h6 className="text-zinc-700 ">
           Listen to your favourite songs, by clicking{" "}
           <span className="font-semibold underline">recommended</span>
         </h6>

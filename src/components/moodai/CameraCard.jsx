@@ -56,12 +56,12 @@ const CameraCard = () => {
       </CardHeader>
       <CardContent className="w-full h-72">
         <Video />
-        <CardDescription className="text-zinc-700 font-semibold text-sm">
+        <CardDescription className="text-zinc-700 font-semibold text-sm ml-4">
           click on the camera icon in video to turn on/off camera.
         </CardDescription>
       </CardContent>
       <CardFooter className="">
-        <div className="w-4/5 flex flex-row justify-between items-center">
+        <div className="w-3/5 flex flex-row justify-around items-end">
           <div className="flex flex-col p-1 gap-1">
             <h6 className="text-zinc-700 font-semibold text-lg">
               looks like your current mood is{" "}
@@ -70,7 +70,7 @@ const CameraCard = () => {
               {genre || "happy"}
             </h3>
           </div>
-          <div>
+          <div className="">
             <button className="text-zinc-600 hover:text-zinc-400">
               <Search
                 onClick={() => {
